@@ -1,29 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import store from "./redux/store";
 
-import reducers from "./redux/reducers";
 import PrivateRoute from "./helpers/PrivateRoutes";
 
-import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
-import PagesAdmin from "./pages/AdminPages/AdminPages";
-import TableAdmin from "./components/TableUser/TableUser";
+import { LoginAdmin, AdminPages, ServicePages } from "./pages";
+import { TableUser } from "./components";
 
 function App() {
-    const tableUser = <TableAdmin />;
-
     return (
-        <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+        <Provider store={store}>
             <Router>
                 <Switch>
                     <Route exact path="/">
                         <LoginAdmin />
                     </Route>
 
-                    <PrivateRoute exact path="/adminpages">
-                        <PagesAdmin table={tableUser} />
+                    <PrivateRoute exact path="/admin/admin-pages">
+                        <AdminPages table={<TableUser />} />
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/admin/service-pages">
+                        <ServicePages table={<TableUser />} />
                     </PrivateRoute>
                 </Switch>
             </Router>

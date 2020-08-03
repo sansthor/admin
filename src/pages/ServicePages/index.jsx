@@ -2,12 +2,13 @@ import React from "react";
 
 import { Sidebar, TabUser, TabService } from "../../components";
 
-function AdminPages(props) {
+function ServicePages(props) {
     const pageTitle = props.pageTitle;
     const addButton = props.addButton;
     const table = props.table;
     const tabUser = <TabUser />;
     const tabService = <TabService />;
+
     return (
         <div>
             <Sidebar
@@ -21,4 +22,4 @@ function AdminPages(props) {
     );
 }
 
-export default AdminPages;
+export default ServicePages;
