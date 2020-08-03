@@ -48,17 +48,17 @@ export default function TableUser(props) {
 
     const columns = [
         { id: "id", label: "ID", minWidth: 170 },
-        { id: "name", label: "Name", minWidth: 100 },
+        { id: "title", label: "Title", minWidth: 100 },
 
         {
-            id: "email",
-            label: "Email",
+            id: "price",
+            label: "Price",
             minWidth: 170,
             align: "right",
         },
         {
-            id: "service",
-            label: "Service",
+            id: "fullname",
+            label: "Fullname",
             minWidth: 170,
             align: "right",
         },
