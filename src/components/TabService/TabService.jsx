@@ -1,18 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { List, ListItemText, ListItem, ListItemIcon } from "@material-ui/core";
-import { ListAltRounded } from "@material-ui/icons";
+import { AssignmentIndRounded } from "@material-ui/icons";
 
-function TabTask() {
+function TabService() {
     return (
         <div>
             <List>
-                <NavLink to="/admin/tasks" style={{ textDecoration: "none" }}>
+                <NavLink to="/admin/service" style={{ textDecoration: "none" }}>
                     <ListItem button>
                         <ListItemIcon>
-                            <ListAltRounded />
+                            <AssignmentIndRounded />
                         </ListItemIcon>
-                        <ListItemText primary="Tasks" />
+                        <ListItemText primary="Service" />
                     </ListItem>
                 </NavLink>
             </List>
@@ -20,4 +20,4 @@ function TabTask() {
     );
 }
 
-export default TabTask;
+export default TabService;

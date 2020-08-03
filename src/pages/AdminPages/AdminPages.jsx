@@ -1,20 +1,20 @@
 import React from "react";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
-import TabTask from "../../components/TabTask/TabTask";
-import TabEmployee from "../../components/TabEmployee/TabEmployee";
+import TabUser from "../../components/TabUser/TabUser";
+import TabService from "../../components/TabService/TabService";
 
 function AdminPages(props) {
     const pageTitle = props.pageTitle;
     const addButton = props.addButton;
     const table = props.table;
-    const tabTasks = <TabTask />;
-    const tabEmployee = <TabEmployee />;
+    const tabUser = <TabUser />;
+    const tabService = <TabService />;
     return (
         <div>
             <Sidebar
-                tabEmployee={tabEmployee}
-                tabTasks={tabTasks}
+                tabService={tabService}
+                tabUser={tabUser}
                 table={table}
                 addButton={addButton}
                 pageTitle={pageTitle}

@@ -74,9 +74,9 @@ function Sidebar(props) {
         <div>
             <div className={classes.toolbar} />
             <Divider />
-            {props.tabEmployees}
+            {props.tabUser}
             <Divider />
-            {props.tabTasks}
+            {props.tabService}
             <Divider />
             <List>
                 <ListItem button onClick={handleClick}>

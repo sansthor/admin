@@ -9,8 +9,11 @@ import PrivateRoute from "./helpers/PrivateRoutes";
 
 import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
 import PagesAdmin from "./pages/AdminPages/AdminPages";
+import TableAdmin from "./components/TableUser/TableUser";
 
 function App() {
+    const tableUser = <TableAdmin />;
+
     return (
         <Provider store={createStore(reducers, applyMiddleware(thunk))}>
             <Router>
@@ -20,7 +23,7 @@ function App() {
                     </Route>
 
                     <PrivateRoute exact path="/adminpages">
-                        <PagesAdmin />
+                        <PagesAdmin table={tableUser} />
                     </PrivateRoute>
                 </Switch>
             </Router>
