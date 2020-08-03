@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
     Paper,
@@ -10,12 +10,14 @@ import {
     TablePagination,
     TableRow,
     Box,
-    Avatar,
-    TextField,
+    // Avatar,
+    // TextField,
 } from "@material-ui/core";
 
-import { Autocomplete } from "@material-ui/lab";
-import { Pageview } from "@material-ui/icons";
+// import { Autocomplete } from "@material-ui/lab";
+// import { Pageview } from "@material-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllUser } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -37,26 +39,34 @@ const useStyles = makeStyles({
 });
 
 export default function TableUser(props) {
+    const dispatch = useDispatch();
+    const userData = useSelector((state) => state.userData);
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [userData, setUserData] = useState(null);
-    const [input, setInput] = useState("");
+    // const [input, setInput] = useState("");
 
     const columns = [
-        { id: "id", label: "ID", minWidth: 170 },
-        { id: "name", label: "Name", minWidth: 100 },
+        { id: "role", label: "Role", minWidth: 100 },
+        { id: "id", label: "ID", minWidth: 120 },
+        { id: "fullname", label: "Full Name", minWidth: 100 },
 
         {
-            id: "email",
-            label: "Email",
-            minWidth: 170,
+            id: "address",
+            label: "Address",
+            minWidth: 100,
             align: "right",
         },
         {
-            id: "service",
-            label: "Service",
-            minWidth: 170,
+            id: "email",
+            label: "Email",
+            minWidth: 100,
+            align: "right",
+        },
+        {
+            id: "username",
+            label: "User Name",
+            minWidth: 100,
             align: "right",
         },
     ];
@@ -70,14 +80,19 @@ export default function TableUser(props) {
         setPage(0);
     };
 
-    const handleChange = (event) => {
-        setInput(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     setInput(event.target.value);
+    // };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    // };
 
+    useEffect(() => {
+        dispatch(fetchAllUser());
+    }, [dispatch]);
+
+    console.log(userData);
     return (
         <Paper className={classes.root}>
             {userData !== null && (
@@ -90,7 +105,7 @@ export default function TableUser(props) {
                         justifyContent: "center",
                     }}
                 >
-                    <Box component="div" style={{ marginTop: "20px" }}>
+                    {/* <Box component="div" style={{ marginTop: "20px" }}>
                         <Avatar style={{ background: "#e7305b" }}>
                             <Pageview />
                         </Avatar>
@@ -113,7 +128,7 @@ export default function TableUser(props) {
                                 )}
                             />
                         </form>
-                    </Box>
+                    </Box> */}
                 </Box>
             )}
             <TableContainer className={classes.container}>
@@ -145,10 +160,17 @@ export default function TableUser(props) {
                                             tabIndex={-1}
                                         >
                                             <TableCell>{user._id}</TableCell>
+                                            <TableCell>{user.role}</TableCell>
                                             <TableCell>
                                                 {user.fullname}
                                             </TableCell>
+                                            <TableCell>
+                                                {user.username}
+                                            </TableCell>
                                             <TableCell>{user.email}</TableCell>
+                                            <TableCell>
+                                                {user.address}
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })}
