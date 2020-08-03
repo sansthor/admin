@@ -21,7 +21,10 @@ function App() {
                         <AdminPages table={<TableUser />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/service-pages">
-                        <ServicePages table={<TableService />} />
+                        <ServicePages
+                            table={<TableService />}
+                            pageTitle="Service"
+                        />
                     </PrivateRoute>
                 </Switch>
             </Router>
