@@ -6,7 +6,7 @@ import store from "./redux/store";
 import PrivateRoute from "./helpers/PrivateRoutes";
 
 import { LoginAdmin, AdminPages, ServicePages } from "./pages";
-import { TableUser } from "./components";
+import { TableUser, TableService } from "./components";
 
 function App() {
     return (
@@ -21,7 +21,7 @@ function App() {
                         <AdminPages table={<TableUser />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/service-pages">
-                        <ServicePages table={<TableUser />} />
+                        <ServicePages table={<TableService />} />
                     </PrivateRoute>
                 </Switch>
             </Router>

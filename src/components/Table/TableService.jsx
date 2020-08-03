@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
     Paper,
@@ -16,6 +16,8 @@ import {
 
 import { Autocomplete } from "@material-ui/lab";
 import { Pageview } from "@material-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllService } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -37,10 +39,11 @@ const useStyles = makeStyles({
 });
 
 export default function TableUser(props) {
+    const dispatch = useDispatch();
+    const service = useSelector((state) => state.service);
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [userData, setUserData] = useState(null);
     const [input, setInput] = useState("");
 
     const columns = [
@@ -78,9 +81,14 @@ export default function TableUser(props) {
         event.preventDefault();
     };
 
+    useEffect(() => {
+        dispatch(fetchAllService());
+    }, [dispatch]);
+
+    console.log(service);
     return (
         <Paper className={classes.root}>
-            {userData !== null && (
+            {service !== null && (
                 <Box
                     component="div"
                     style={{
@@ -99,7 +107,7 @@ export default function TableUser(props) {
                         <form onSubmit={handleSubmit}>
                             <Autocomplete
                                 id="combo-box-demo"
-                                options={userData !== null && userData}
+                                options={service !== null && service}
                                 getOptionLabel={(option) => option.name}
                                 style={{ width: 300 }}
                                 renderInput={(params) => (
@@ -131,8 +139,8 @@ export default function TableUser(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {userData !== null &&
-                            userData
+                        {service !== null &&
+                            service
                                 .slice(
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
@@ -158,7 +166,7 @@ export default function TableUser(props) {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={userData !== null && userData.length}
+                count={service !== null && service.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
