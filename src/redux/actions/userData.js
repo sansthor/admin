@@ -1,9 +1,9 @@
-const GET_ALL_SERVICE = "GET_ALL_SERVICE";
+const GET_ALL_USER = "GET_ALL_User";
 
-const fetchAllService = () => async (dispatch) => {
+const fetchAllUser = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/getservicedata`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/getDataUser`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -15,7 +15,7 @@ const fetchAllService = () => async (dispatch) => {
         const result = await response.json();
 
         dispatch({
-            type: GET_ALL_SERVICE,
+            type: GET_ALL_USER,
             payload: result.data
         });
     } catch (error) {
@@ -24,6 +24,6 @@ const fetchAllService = () => async (dispatch) => {
 };
 
 export {
-    GET_ALL_SERVICE,
-    fetchAllService
+    GET_ALL_USER,
+    fetchAllUser
 };
