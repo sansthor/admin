@@ -49,4 +49,8 @@ const loginAdmin = (formData, history) => async (dispatch) => {
     }
 };
 
-export { getUserLogin, GET_USER_LOGIN, loginAdmin };
+export {
+    getUserLogin,
+    GET_USER_LOGIN,
+    loginAdmin
+};

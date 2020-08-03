@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import reducers from "./redux/reducers";
-// import PrivateRoute from "./helpers/PrivateRoute";
+import PrivateRoute from "./helpers/PrivateRoutes";
 
 import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
 import PagesAdmin from "./pages/AdminPages/AdminPages";
@@ -18,9 +18,10 @@ function App() {
                     <Route exact path="/">
                         <LoginAdmin />
                     </Route>
-                    <Route exact path="/adminpages">
+
+                    <PrivateRoute exact path="/adminpages">
                         <PagesAdmin />
-                    </Route>
+                    </PrivateRoute>
                 </Switch>
             </Router>
         </Provider>
