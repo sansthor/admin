@@ -153,10 +153,11 @@ export default function TableUser(props) {
                                             tabIndex={-1}
                                         >
                                             <TableCell>{user._id}</TableCell>
+                                            <TableCell>{user.title}</TableCell>
+                                            <TableCell>{user.price}</TableCell>
                                             <TableCell>
-                                                {user.fullname}
+                                                {user.userID.fullname}
                                             </TableCell>
-                                            <TableCell>{user.email}</TableCell>
                                         </TableRow>
                                     );
                                 })}
