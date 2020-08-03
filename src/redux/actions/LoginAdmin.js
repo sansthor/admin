@@ -23,7 +23,6 @@ const loginAdmin = (formData, history) => async (dispatch) => {
         const response = await fetch(url, options);
         const result = await response.json();
 
-        console.log(response);
         if (response.status === 200) {
             Swal.fire({
                 title: "Login Success",
@@ -36,16 +35,15 @@ const loginAdmin = (formData, history) => async (dispatch) => {
             dispatch(getUserLogin(result));
             history.push("/adminpages");
         } else if (response.status === 403) {
-            localStorage.clear();
+            Swal.fire({
+                title: "Email or Password Incorrect!",
+                text: "",
+                icon: "error",
+                confirmButtonText: "Back",
+            });
         }
     } catch (error) {
-        // Swal.fire({
-        //     title: "Email or Password Incorrect!",
-        //     text: "",
-        //     icon: "error",
-        //     confirmButtonText: "Back",
-        // });
-        console.log(error);
+        console.log(error)
     }
 };
 
