@@ -10,8 +10,15 @@ import {
     AdminPages,
     ServicePages,
     TransactionPages,
+    DataAdmin,
 } from "./pages";
-import { TableUser, TableService, TableTransaction } from "./components";
+
+import {
+    TableUser,
+    TableService,
+    TableTransaction,
+    TableAdmin,
+} from "./components";
 
 function App() {
     return (
@@ -30,6 +37,9 @@ function App() {
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/service-transaction">
                         <TransactionPages table={<TableTransaction />} />
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/admin/admin-dataadmin">
+                        <DataAdmin table={<TableAdmin />} />
                     </PrivateRoute>
                 </Switch>
             </Router>

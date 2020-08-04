@@ -1,11 +1,18 @@
 import React from "react";
 
-import { Sidebar, TabUser, TabService, TabTransaction } from "../../components";
+import {
+    Sidebar,
+    TabUser,
+    TabService,
+    TabTransaction,
+    TabAdmin,
+} from "../../components";
 
 function TransactionPages(props) {
     const pageTitle = props.pageTitle;
     const addButton = props.addButton;
     const table = props.table;
+    const tabAdmin = <TabAdmin />;
     const tabUser = <TabUser />;
     const tabService = <TabService />;
     const tabTransaction = <TabTransaction />;
@@ -13,8 +20,9 @@ function TransactionPages(props) {
     return (
         <div>
             <Sidebar
-                tabService={tabService}
+                tabAdmin={tabAdmin}
                 tabUser={tabUser}
+                tabService={tabService}
                 tabTransaction={tabTransaction}
                 table={table}
                 addButton={addButton}

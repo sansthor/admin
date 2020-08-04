@@ -74,6 +74,8 @@ function Sidebar(props) {
         <div>
             <div className={classes.toolbar} />
             <Divider />
+            {props.tabAdmin}
+            <Divider />
             {props.tabUser}
             <Divider />
             {props.tabService}
