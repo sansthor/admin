@@ -78,6 +78,8 @@ function Sidebar(props) {
             <Divider />
             {props.tabService}
             <Divider />
+            {props.tabTransaction}
+            <Divider />
             <List>
                 <ListItem button onClick={handleClick}>
                     <ListItemIcon>

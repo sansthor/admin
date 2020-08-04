@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Sidebar, TabUser, TabService } from "../../components";
+import { Sidebar, TabUser, TabService, TabTransaction } from "../../components";
 
 function AdminPages(props) {
     const pageTitle = props.pageTitle;
@@ -8,11 +8,13 @@ function AdminPages(props) {
     const table = props.table;
     const tabUser = <TabUser />;
     const tabService = <TabService />;
+    const tabTransaction = <TabTransaction />;
     return (
         <div>
             <Sidebar
                 tabService={tabService}
                 tabUser={tabUser}
+                tabTransaction={tabTransaction}
                 table={table}
                 addButton={addButton}
                 pageTitle={pageTitle}

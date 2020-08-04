@@ -4,10 +4,12 @@ import {
 
 import LoginAdmin from "./LoginAdmin";
 import service from "./service";
-import userData from './userData'
+import userData from './userData';
+import transactionData from './transaction';
 
 export default combineReducers({
     LoginAdmin,
     service,
-    userData
+    userData,
+    transactionData
 });

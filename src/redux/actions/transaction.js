@@ -1,9 +1,9 @@
-const GET_ALL_USER = "GET_ALL_User";
+const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 
-const fetchAllUser = () => async (dispatch) => {
+const fetchAllTransaction = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/order`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -15,7 +15,7 @@ const fetchAllUser = () => async (dispatch) => {
         const result = await response.json();
 
         dispatch({
-            type: GET_ALL_USER,
+            type: GET_ALL_TRANSACTION,
             payload: result.data
         });
     } catch (error) {
@@ -24,6 +24,6 @@ const fetchAllUser = () => async (dispatch) => {
 };
 
 export {
-    GET_ALL_USER,
-    fetchAllUser
+    GET_ALL_TRANSACTION,
+    fetchAllTransaction
 };

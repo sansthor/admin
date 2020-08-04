@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllUser } from "../../redux/actions";
+import { fetchAllTransaction } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -34,33 +34,38 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TableUser(props) {
+export default function TableTransaction(props) {
     const dispatch = useDispatch();
-    const userData = useSelector((state) => state.userData);
+    const transactionData = useSelector((state) => state.transactionData);
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const columns = [
-        { id: "role", label: "Role", minWidth: 100 },
         { id: "id", label: "ID", minWidth: 120 },
-        { id: "fullname", label: "Full Name", minWidth: 100 },
+        { id: "status", label: "Status", minWidth: 100 },
 
         {
-            id: "username",
-            label: "User Name",
+            id: "talentstatus",
+            label: "Talent Status",
             minWidth: 100,
             align: "right",
         },
         {
-            id: "email",
-            label: "Email",
+            id: "userstatus",
+            label: "User Status",
             minWidth: 100,
             align: "right",
         },
         {
-            id: "address",
-            label: "Address",
+            id: "total",
+            label: "Total",
+            minWidth: 100,
+            align: "right",
+        },
+        {
+            id: "quantity",
+            label: "Quantity",
             minWidth: 100,
             align: "right",
         },
@@ -76,12 +81,12 @@ export default function TableUser(props) {
     };
 
     useEffect(() => {
-        dispatch(fetchAllUser());
+        dispatch(fetchAllTransaction());
     }, [dispatch]);
 
     return (
         <Paper className={classes.root}>
-            {userData !== null && (
+            {transactionData !== null && (
                 <Box
                     component="div"
                     style={{
@@ -107,8 +112,8 @@ export default function TableUser(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {userData !== null &&
-                            userData
+                        {transactionData !== null &&
+                            transactionData
                                 .slice(
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
@@ -120,17 +125,17 @@ export default function TableUser(props) {
                                             role="checkbox"
                                             tabIndex={-1}
                                         >
-                                            <TableCell>{user.role}</TableCell>
                                             <TableCell>{user._id}</TableCell>
+                                            <TableCell>{user.status}</TableCell>
                                             <TableCell>
-                                                {user.fullname}
+                                                {user.talentStatus}
                                             </TableCell>
                                             <TableCell>
-                                                {user.username}
+                                                {user.userStatus}
                                             </TableCell>
-                                            <TableCell>{user.email}</TableCell>
+                                            <TableCell>{user.total}</TableCell>
                                             <TableCell>
-                                                {user.address}
+                                                {user.quantity}
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -141,7 +146,7 @@ export default function TableUser(props) {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={userData !== null && userData.length}
+                count={transactionData !== null && transactionData.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}

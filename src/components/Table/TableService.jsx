@@ -10,12 +10,8 @@ import {
     TablePagination,
     TableRow,
     Box,
-    // Avatar,
-    // TextField,
 } from "@material-ui/core";
 
-// import { Autocomplete } from "@material-ui/lab";
-// import { Pageview } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllService } from "../../redux/actions";
 
@@ -44,7 +40,6 @@ export default function TableUser(props) {
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    // const [input, setInput] = useState("");
 
     const columns = [
         { id: "id", label: "ID", minWidth: 170 },
@@ -73,19 +68,10 @@ export default function TableUser(props) {
         setPage(0);
     };
 
-    // const handleChange = (event) => {
-    //     setInput(event.target.value);
-    // };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    // };
-
     useEffect(() => {
         dispatch(fetchAllService());
     }, [dispatch]);
 
-    console.log(service);
     return (
         <Paper className={classes.root}>
             {service !== null && (
@@ -97,32 +83,7 @@ export default function TableUser(props) {
                         flexDirection: "row",
                         justifyContent: "center",
                     }}
-                >
-                    {/* <Box component="div" style={{ marginTop: "20px" }}>
-                        <Avatar style={{ background: "#e7305b" }}>
-                            <Pageview />
-                        </Avatar>
-                    </Box>
-                    <Box component="div" style={{ margin: "1em" }}>
-                        <form onSubmit={handleSubmit}>
-                            <Autocomplete
-                                id="combo-box-demo"
-                                options={service !== null && service}
-                                getOptionLabel={(option) => option.name}
-                                style={{ width: 300 }}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Search Service Name"
-                                        variant="outlined"
-                                        onSelect={handleChange}
-                                        value={input}
-                                    />
-                                )}
-                            />
-                        </form>
-                    </Box> */}
-                </Box>
+                ></Box>
             )}
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
