@@ -8,3 +8,4 @@ export { default as TabService } from "./Tab/TabService";
 export { default as TabUser } from "./Tab/TabUser";
 export { default as TabTransaction } from "./Tab/TabTransaction";
 export { default as TabAdmin } from "./Tab/TabAdmin";
+export { default as ModalAdd } from "./ModalAdd/ModalAdd";

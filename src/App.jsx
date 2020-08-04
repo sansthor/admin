@@ -18,6 +18,7 @@ import {
     TableService,
     TableTransaction,
     TableAdmin,
+    ModalAdd,
 } from "./components";
 
 function App() {
@@ -39,7 +40,10 @@ function App() {
                         <TransactionPages table={<TableTransaction />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/admin-dataadmin">
-                        <DataAdmin table={<TableAdmin />} />
+                        <DataAdmin
+                            table={<TableAdmin />}
+                            addButton={<ModalAdd />}
+                        />
                     </PrivateRoute>
                 </Switch>
             </Router>
