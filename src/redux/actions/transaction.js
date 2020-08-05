@@ -1,7 +1,3 @@
-import {
-    fetchAllService
-} from "./service";
-
 const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const TRANSFER_BALANCE = 'TRANSFER BALANCE'
 const GET_ALL_DONE = 'GET_ALL_DONE'

@@ -10,7 +10,7 @@ import {
     AdminPages,
     ServicePages,
     TransactionPages,
-    DataAdmin,Transfer
+    DataAdmin,
 } from "./pages";
 
 import {
