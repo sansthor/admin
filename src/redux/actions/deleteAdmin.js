@@ -1,22 +1,22 @@
 import Swal from "sweetalert2";
 import {
     fetchAllAdmin
-} from "./admin";
-const EDIT_USER = "EDIT_USER";
+} from './admin'
 
-const editUser = (payload) => {
+const DELETE_USER = "DELETE_USER";
+
+const deleteUser = (payload) => {
     return {
-        type: EDIT_USER,
+        type: DELETE_USER,
         payload,
     };
 };
 
-const edit = (formData, id) => async (dispatch) => {
+const deletes = (id) => async (dispatch) => {
     const token = localStorage.getItem("token");
-    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/updatedataadmin/${id}`;
+    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/deletedataadmin/${id}`;
     const options = {
-        method: "PUT",
-        body: JSON.stringify(formData),
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             authorization: `Bearer ${token}`,
@@ -26,13 +26,14 @@ const edit = (formData, id) => async (dispatch) => {
 
     if (response.status === 200) {
         Swal.fire({
-            title: "Your Data Successfully Updated!",
+            title: "Your Data Successfully Delete!",
             text: "",
             icon: "success",
+            confirmButtonText: "Ok",
         });
     } else {
         Swal.fire({
-            title: "Your Data Update Failed!",
+            title: "Your Data Delete Failed!",
             text: "",
             icon: "error",
             confirmButtonText: "Back",
@@ -42,7 +43,7 @@ const edit = (formData, id) => async (dispatch) => {
 };
 
 export {
-    EDIT_USER,
-    edit,
-    editUser
+    DELETE_USER,
+    deletes,
+    deleteUser
 };

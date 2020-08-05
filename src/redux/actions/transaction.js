@@ -3,7 +3,7 @@ const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const fetchAllTransaction = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/order`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/transaction`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,

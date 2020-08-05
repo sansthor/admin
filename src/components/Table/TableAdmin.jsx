@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllAdmin } from "../../redux/actions";
 
 import ModalEditData from "../ModalEdit/ModalEdit";
+import ModalDeleteData from "../ModalDelete/ModalDelete";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -44,10 +45,12 @@ export default function TableAdmin(props) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const columns = [
+        { id: "createdAt", label: "Created At", minWidth: 120 },
         { id: "id", label: "ID", minWidth: 120 },
-        { id: "email", label: "email", minWidth: 100 },
+        { id: "email", label: "Email", minWidth: 100 },
         { id: "username", label: "UserName", minWidth: 100 },
         { id: "options", label: "Options", minWidth: 100 },
+        { id: "options", label: "", minWidth: 100 },
     ];
 
     const handleChangePage = (event, newPage) => {
@@ -104,12 +107,22 @@ export default function TableAdmin(props) {
                                             role="checkbox"
                                             tabIndex={-1}
                                         >
+                                            <TableCell>
+                                                {user.createdAt}
+                                            </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.email}</TableCell>
                                             <TableCell>
                                                 {user.username}
                                             </TableCell>
-                                            <ModalEditData id={user._id} />
+                                            <TableCell>
+                                                <ModalEditData id={user._id} />
+                                            </TableCell>
+                                            <TableCell>
+                                                <ModalDeleteData
+                                                    id={user._id}
+                                                />
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })}
