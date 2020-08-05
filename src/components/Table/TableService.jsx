@@ -9,11 +9,11 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
-    Box,
+    Box,Button
 } from "@material-ui/core";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllService } from "../../redux/actions";
+import { fetchAllService,deleteService } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -58,6 +58,13 @@ export default function TableUser(props) {
             align: "right",
         },
     ];
+
+    const handleDelete = (id) =>{
+       
+        dispatch(deleteService(id))
+        dispatch(fetchAllService());
+    } 
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -119,6 +126,7 @@ export default function TableUser(props) {
                                             <TableCell>
                                                 {user.userID !== undefined && user.userID.fullname}
                                             </TableCell>
+                                            <Button onClick={() => handleDelete(user._id)} color='primary' variant='contained'>Delete</Button>
                                         </TableRow>
                                     );
                                 })}
