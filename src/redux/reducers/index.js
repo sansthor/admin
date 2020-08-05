@@ -6,8 +6,9 @@ import LoginAdmin from "./LoginAdmin";
 import service from "./service";
 import userData from './userData';
 import transactionData from './transaction';
-import adminData from './admin'
-import addAdmin from './addAdmin'
+import adminData from './admin';
+import addAdmin from './addAdmin';
+import editAdmin from './editAdmin';
 
 export default combineReducers({
     LoginAdmin,
@@ -15,5 +16,6 @@ export default combineReducers({
     userData,
     transactionData,
     adminData,
-    addAdmin
+    addAdmin,
+    editAdmin
 });
