@@ -3,7 +3,7 @@ const GET_ALL_USER = "GET_ALL_User";
 const fetchAllUser = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/user`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/getDataUser`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,

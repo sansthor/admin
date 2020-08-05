@@ -9,6 +9,7 @@ import transactionData from './transaction';
 import adminData from './admin';
 import addAdmin from './addAdmin';
 import editAdmin from './editAdmin';
+import deleteAdmin from './deleteAdmin'
 
 export default combineReducers({
     LoginAdmin,
@@ -17,5 +18,6 @@ export default combineReducers({
     transactionData,
     adminData,
     addAdmin,
-    editAdmin
+    editAdmin,
+    deleteAdmin
 });
