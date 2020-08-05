@@ -117,7 +117,7 @@ export default function TableUser(props) {
                                             <TableCell>{user.title}</TableCell>
                                             <TableCell>{user.price}</TableCell>
                                             <TableCell>
-                                                {user.userID.fullname}
+                                                {user.userID !== undefined && user.userID.fullname}
                                             </TableCell>
                                         </TableRow>
                                     );

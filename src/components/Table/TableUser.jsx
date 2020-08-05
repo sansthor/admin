@@ -64,6 +64,12 @@ export default function TableUser(props) {
             minWidth: 100,
             align: "right",
         },
+        {
+            id: "balance",
+            label: "Balance",
+            minWidth: 100,
+            align: "right",
+        },
     ];
 
     const handleChangePage = (event, newPage) => {
@@ -131,6 +137,9 @@ export default function TableUser(props) {
                                             <TableCell>{user.email}</TableCell>
                                             <TableCell>
                                                 {user.address}
+                                            </TableCell>
+                                            <TableCell>
+                                                {user.balance}
                                             </TableCell>
                                         </TableRow>
                                     );

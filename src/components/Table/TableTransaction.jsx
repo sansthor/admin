@@ -9,11 +9,11 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
-    Box,
+    Box,Button
 } from "@material-ui/core";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllTransaction } from "../../redux/actions";
+import { fetchAllTransaction, transferBalance, fetchAllDone } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -40,7 +40,7 @@ export default function TableTransaction(props) {
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-
+    console.log(transactionData);
     const columns = [
         { id: "id", label: "ID", minWidth: 120 },
         { id: "status", label: "Status", minWidth: 100 },
@@ -70,6 +70,18 @@ export default function TableTransaction(props) {
             align: "right",
         },
     ];
+    
+    
+
+    const handleClick = (id) =>{
+       
+        dispatch(transferBalance(id))
+        dispatch(fetchAllTransaction());
+    } 
+
+    const handleDone = () => {
+        dispatch(fetchAllDone())
+    }
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -83,7 +95,7 @@ export default function TableTransaction(props) {
     useEffect(() => {
         dispatch(fetchAllTransaction());
     }, [dispatch]);
-
+    
     return (
         <Paper className={classes.root}>
             {transactionData !== null && (
@@ -97,6 +109,7 @@ export default function TableTransaction(props) {
                     }}
                 ></Box>
             )}
+            
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -118,7 +131,7 @@ export default function TableTransaction(props) {
                                     page * rowsPerPage,
                                     page * rowsPerPage + rowsPerPage
                                 )
-                                .map((user) => {
+                                .map((user, index) => {
                                     return (
                                         <TableRow
                                             hover
@@ -136,13 +149,16 @@ export default function TableTransaction(props) {
                                             <TableCell>{user.total}</TableCell>
                                             <TableCell>
                                                 {user.quantity}
+                                               
                                             </TableCell>
+                                    <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>
                                         </TableRow>
                                     );
                                 })}
                     </TableBody>
                 </Table>
             </TableContainer>
+           
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
@@ -152,6 +168,8 @@ export default function TableTransaction(props) {
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
+            <Button variant='contained' color='primary' onClick={handleDone}>All Status Done</Button>
         </Paper>
+        
     );
 }

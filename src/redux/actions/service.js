@@ -3,7 +3,7 @@ const GET_ALL_SERVICE = "GET_ALL_SERVICE";
 const fetchAllService = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/getservicedata`;
+        const url = `${process.env.REACT_APP_API_URL}/admin/getservicedata`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,

@@ -9,7 +9,7 @@ const registerUser = (payload) => {
 };
 
 const register = (formData, history) => async (dispatch) => {
-    const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/registerAdmin`;
+    const url = `${process.env.REACT_APP_API_URL}/admin/registerAdmin`;
     const options = {
         method: 'POST',
         body: JSON.stringify(formData),
