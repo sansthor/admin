@@ -15,6 +15,8 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllAdmin } from "../../redux/actions";
 
+import ModalEditData from "../ModalEdit/ModalEdit";
+
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.info.dark,
@@ -45,6 +47,7 @@ export default function TableAdmin(props) {
         { id: "id", label: "ID", minWidth: 120 },
         { id: "email", label: "email", minWidth: 100 },
         { id: "username", label: "UserName", minWidth: 100 },
+        { id: "options", label: "Options", minWidth: 100 },
     ];
 
     const handleChangePage = (event, newPage) => {
@@ -106,6 +109,7 @@ export default function TableAdmin(props) {
                                             <TableCell>
                                                 {user.username}
                                             </TableCell>
+                                            <ModalEditData id={user._id} />
                                         </TableRow>
                                     );
                                 })}
