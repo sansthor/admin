@@ -39,13 +39,13 @@ const deleteService = (id) => async (dispatch) =>{
 
         dispatch(fetchAllService())
 
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
     }
-}  
+}
 
 export {
     GET_ALL_SERVICE,
-    fetchAllService,deleteService
+    fetchAllService,
+    deleteService
 };

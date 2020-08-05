@@ -161,7 +161,6 @@ export default function TableTransaction(props) {
                                             <TableCell>
                                             <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>
                                             </TableCell>
-                                  
                                         </TableRow>
                                     );
                                 })}

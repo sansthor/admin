@@ -4,8 +4,12 @@ const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const TRANSFER_BALANCE = 'TRANSFER BALANCE'
 const GET_ALL_DONE = 'GET_ALL_DONE'
 
-const transfer = (data) =>{
-    return {type:TRANSFER_BALANCE,data}
+
+const transfer = (data) => {
+    return {
+        type: TRANSFER_BALANCE,
+        data
+    }
 }
 
 
@@ -55,9 +59,8 @@ const fetchAllDone = () => async (dispatch) => {
     }
 };
 
-
-const transferBalance = (id) => async (dispatch) =>{
-    try{
+const transferBalance = (id) => async (dispatch) => {
+    try {
         const token = localStorage.getItem('token');
         const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/order/transfer/${id}`
         const options = {
@@ -65,8 +68,8 @@ const transferBalance = (id) => async (dispatch) =>{
                 authorization: `Bearer ${token}`,
             },
             method: "PUT",
-            body:{
-                'Content-type':'application/json'
+            body: {
+                'Content-type': 'application/json'
             }
         };
 
@@ -74,10 +77,7 @@ const transferBalance = (id) => async (dispatch) =>{
         const result = await response.json()
 
         dispatch(fetchAllTransaction())
-
-
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
     }
 }
@@ -87,5 +87,7 @@ export {
     fetchAllTransaction,
     TRANSFER_BALANCE,
     transferBalance,
-    transfer,GET_ALL_DONE,fetchAllDone
+    transfer,
+    GET_ALL_DONE,
+    fetchAllDone
 };

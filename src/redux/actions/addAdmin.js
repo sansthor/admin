@@ -1,4 +1,7 @@
 import Swal from 'sweetalert2';
+import {
+    fetchAllAdmin
+} from './admin';
 const REGISTER_USER = 'REGISTER_USER';
 
 const registerUser = (payload) => {
@@ -37,6 +40,7 @@ const register = (formData, history) => async (dispatch) => {
         });
     }
     dispatch(registerUser(result));
+    dispatch(fetchAllAdmin())
 }
 
 export {
