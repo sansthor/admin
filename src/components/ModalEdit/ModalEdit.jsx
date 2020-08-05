@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import {
     Button,
-    TextField,
     Dialog,
     DialogActions,
     DialogContent,
     FormControl,
     DialogTitle,
-    Fab,
+    TextField,
 } from "@material-ui/core";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-import Add from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/core/styles";
-import { register } from "../../redux/actions";
+import { edit } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FormDialog() {
+export default function ModalEditData(props) {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const classes = useStyles();
@@ -52,32 +50,27 @@ export default function FormDialog() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(register(admin));
+        dispatch(edit(admin, props.id));
     };
 
     return (
         <div>
-            <Fab
+            <Button
+                variant="contained"
                 color="primary"
-                aria-label="add"
                 onClick={handleClickOpen}
-                style={{ margin: "1em" }}
             >
-                <Add />
-            </Fab>
+                <EditIcon />
+                Edit Data
+            </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">
-                    Form to Add Admin
-                </DialogTitle>
+                <DialogTitle id="form-dialog-title">Edit Data</DialogTitle>
                 <DialogContent>
-                    <form
-                        className={classes.formControl}
-                        onSubmit={handleSubmit}
-                    >
+                    <form onSubmit={handleSubmit}>
                         <FormControl className={classes.formControl}>
                             <TextField
                                 autoFocus
@@ -116,7 +109,6 @@ export default function FormDialog() {
                                 value={admin.password}
                             />
                         </FormControl>
-
                         <DialogActions>
                             <Button onClick={handleClose} color="primary">
                                 Cancel
@@ -126,7 +118,7 @@ export default function FormDialog() {
                                 onClick={handleClose}
                                 color="primary"
                             >
-                                Create
+                                Confirm
                             </Button>
                         </DialogActions>
                     </form>

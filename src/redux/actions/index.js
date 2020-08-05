@@ -4,3 +4,5 @@ export * from "./userData";
 export * from "./transaction";
 export * from "./admin";
 export * from './addAdmin'
+export * from './editAdmin'
+export * from './deleteAdmin'

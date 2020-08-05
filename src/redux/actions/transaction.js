@@ -12,7 +12,7 @@ const transfer = (data) =>{
 const fetchAllTransaction = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/status`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/transaction`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ const fetchAllTransaction = () => async (dispatch) => {
 const fetchAllDone = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/status/done`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/order/status/done`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
