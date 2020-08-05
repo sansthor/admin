@@ -1,18 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { List, ListItemText, ListItem, ListItemIcon } from "@material-ui/core";
-import { ListAltRounded } from "@material-ui/icons";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
-function TabTask() {
+function TabTransaction() {
     return (
         <div>
             <List>
-                <NavLink to="/admin/tasks" style={{ textDecoration: "none" }}>
+                <NavLink
+                    to="/admin/admin-dataadmin"
+                    style={{ textDecoration: "none" }}
+                >
                     <ListItem button>
                         <ListItemIcon>
-                            <ListAltRounded />
+                            <SupervisorAccountIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Tasks" />
+                        <ListItemText primary="Admin" />
                     </ListItem>
                 </NavLink>
             </List>
@@ -20,4 +23,4 @@ function TabTask() {
     );
 }
 
-export default TabTask;
+export default TabTransaction;

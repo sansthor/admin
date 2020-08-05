@@ -11,7 +11,7 @@ const getUserLogin = (data) => {
 
 const loginAdmin = (formData, history) => async (dispatch) => {
     try {
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/loginAdmin`;
+        const url = `${process.env.REACT_APP_API_URL}/admin/loginAdmin`;
         const options = {
             method: "POST",
             body: JSON.stringify(formData),
@@ -23,7 +23,6 @@ const loginAdmin = (formData, history) => async (dispatch) => {
         const response = await fetch(url, options);
         const result = await response.json();
 
-        console.log(response);
         if (response.status === 200) {
             Swal.fire({
                 title: "Login Success",
@@ -34,18 +33,17 @@ const loginAdmin = (formData, history) => async (dispatch) => {
 
             localStorage.setItem("token", result.result);
             dispatch(getUserLogin(result));
-            history.push("/adminpages");
+            history.push("/admin/admin-dataadmin");
         } else if (response.status === 403) {
-            localStorage.clear();
+            Swal.fire({
+                title: "Email or Password Incorrect!",
+                text: "",
+                icon: "error",
+                confirmButtonText: "Back",
+            });
         }
     } catch (error) {
-        // Swal.fire({
-        //     title: "Email or Password Incorrect!",
-        //     text: "",
-        //     icon: "error",
-        //     confirmButtonText: "Back",
-        // });
-        console.log(error);
+        console.log(error)
     }
 };
 

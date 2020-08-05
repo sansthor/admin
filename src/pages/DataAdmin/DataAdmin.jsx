@@ -8,7 +8,7 @@ import {
     TabAdmin,
 } from "../../components";
 
-function AdminPages(props) {
+function DataAdmin(props) {
     const pageTitle = props.pageTitle;
     const addButton = props.addButton;
     const table = props.table;
@@ -32,4 +32,4 @@ function AdminPages(props) {
     );
 }
 
-export default AdminPages;
+export default DataAdmin;
