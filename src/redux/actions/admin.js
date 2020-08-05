@@ -3,7 +3,7 @@ const GET_ALL_ADMIN = "GET_ALL_ADMIN";
 const fetchAllAdmin = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin`;
+        const url = `${process.env.REACT_APP_API_URL}/admin`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,

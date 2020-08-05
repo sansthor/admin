@@ -10,7 +10,7 @@ import {
     AdminPages,
     ServicePages,
     TransactionPages,
-    DataAdmin,
+    DataAdmin,Transfer
 } from "./pages";
 
 import {
@@ -29,7 +29,6 @@ function App() {
                     <Route exact path="/">
                         <LoginAdmin />
                     </Route>
-
                     <PrivateRoute exact path="/admin/admin-pages">
                         <AdminPages table={<TableUser />} />
                     </PrivateRoute>
@@ -39,7 +38,7 @@ function App() {
                             pageTitle="Service"
                         />
                     </PrivateRoute>
-                    <PrivateRoute exact path="/admin/service-transaction">
+                    <PrivateRoute exact path="/admin/service-transaction/">
                         <TransactionPages table={<TableTransaction />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/admin-dataadmin">
