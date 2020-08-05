@@ -58,6 +58,9 @@ export default function TableUser(props) {
             minWidth: 170,
             align: "right",
         },
+        {
+            align:'right'
+        }
     ];
 
     const handleDelete = (id) =>{
@@ -130,7 +133,10 @@ export default function TableUser(props) {
                                             <TableCell>
                                                 {user.userID !== undefined && user.userID.fullname}
                                             </TableCell>
+                                            <TableCell>
                                             <Button onClick={() => handleDelete(user._id)} color='primary' variant='contained'>Delete</Button>
+                                            </TableCell>
+                                    
                                         </TableRow>
                                     );
                                 })}

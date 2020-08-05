@@ -70,6 +70,9 @@ export default function TableTransaction(props) {
             minWidth: 100,
             align: "right",
         },
+        {
+            align:'right'
+        }
     ];
     
     
@@ -155,7 +158,10 @@ export default function TableTransaction(props) {
                                                 {user.quantity}
                                                
                                             </TableCell>
-                                    <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>
+                                            <TableCell>
+                                            <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>
+                                            </TableCell>
+                                  
                                         </TableRow>
                                     );
                                 })}

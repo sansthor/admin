@@ -59,7 +59,7 @@ const fetchAllDone = () => async (dispatch) => {
 const transferBalance = (id) => async (dispatch) =>{
     try{
         const token = localStorage.getItem('token');
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/transfer/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/order/transfer/${id}`
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,

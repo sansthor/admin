@@ -11,7 +11,7 @@ const getUserLogin = (data) => {
 
 const loginAdmin = (formData, history) => async (dispatch) => {
     try {
-        const url = `${process.env.REACT_APP_API_URL}/admin/loginAdmin`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/loginAdmin`;
         const options = {
             method: "POST",
             body: JSON.stringify(formData),
