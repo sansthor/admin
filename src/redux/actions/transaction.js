@@ -1,18 +1,23 @@
-import { fetchAllService } from "./service";
+import {
+    fetchAllService
+} from "./service";
 
 const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const TRANSFER_BALANCE = 'TRANSFER BALANCE'
 const GET_ALL_DONE = 'GET_ALL_DONE'
 
-const transfer = (data) =>{
-    return {type:TRANSFER_BALANCE,data}
+const transfer = (data) => {
+    return {
+        type: TRANSFER_BALANCE,
+        data
+    }
 }
 
 
 const fetchAllTransaction = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/status`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/transaction`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -35,7 +40,7 @@ const fetchAllTransaction = () => async (dispatch) => {
 const fetchAllDone = () => async (dispatch) => {
     try {
         const token = localStorage.getItem("token");
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/status/done`;
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/order/status/done`;
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -56,17 +61,17 @@ const fetchAllDone = () => async (dispatch) => {
 };
 
 
-const transferBalance = (id) => async (dispatch) =>{
-    try{
+const transferBalance = (id) => async (dispatch) => {
+    try {
         const token = localStorage.getItem('token');
-        const url = `${process.env.REACT_APP_API_URL}/admin/order/transfer/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/order/transfer/${id}`
         const options = {
             headers: {
                 authorization: `Bearer ${token}`,
             },
             method: "PUT",
-            body:{
-                'Content-type':'application/json'
+            body: {
+                'Content-type': 'application/json'
             }
         };
 
@@ -76,8 +81,7 @@ const transferBalance = (id) => async (dispatch) =>{
         dispatch(fetchAllTransaction())
 
 
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
     }
 }
@@ -87,5 +91,7 @@ export {
     fetchAllTransaction,
     TRANSFER_BALANCE,
     transferBalance,
-    transfer,GET_ALL_DONE,fetchAllDone
+    transfer,
+    GET_ALL_DONE,
+    fetchAllDone
 };

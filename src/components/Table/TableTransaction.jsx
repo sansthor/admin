@@ -42,6 +42,7 @@ export default function TableTransaction(props) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     console.log(transactionData);
     const columns = [
+        { id: "createdAt", label: "Created At", minWidth: 120 },
         { id: "id", label: "ID", minWidth: 120 },
         { id: "status", label: "Status", minWidth: 100 },
 
@@ -138,6 +139,9 @@ export default function TableTransaction(props) {
                                             role="checkbox"
                                             tabIndex={-1}
                                         >
+                                            <TableCell>
+                                                {user.createdAt}
+                                            </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.status}</TableCell>
                                             <TableCell>

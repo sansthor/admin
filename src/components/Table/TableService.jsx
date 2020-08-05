@@ -42,6 +42,7 @@ export default function TableUser(props) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const columns = [
+        { id: "createdAt", label: "Created At", minWidth: 170 },
         { id: "id", label: "ID", minWidth: 170 },
         { id: "title", label: "Title", minWidth: 100 },
 
@@ -120,6 +121,9 @@ export default function TableUser(props) {
                                             role="checkbox"
                                             tabIndex={-1}
                                         >
+                                            <TableCell>
+                                                {user.createdAt}
+                                            </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.title}</TableCell>
                                             <TableCell>{user.price}</TableCell>
