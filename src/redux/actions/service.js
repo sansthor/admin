@@ -23,8 +23,8 @@ const fetchAllService = () => async (dispatch) => {
     }
 };
 
-const deleteService = (id) => async (dispatch) => {
-    try {
+const deleteService = (id) => async (dispatch) =>{
+    try{
         const token = localStorage.getItem("token");
         const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/delete/service/${id}`;
         const options = {

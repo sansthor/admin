@@ -1,6 +1,9 @@
+import { fetchAllService } from "./service";
+
 const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const TRANSFER_BALANCE = 'TRANSFER BALANCE'
 const GET_ALL_DONE = 'GET_ALL_DONE'
+
 
 const transfer = (data) => {
     return {
@@ -56,7 +59,6 @@ const fetchAllDone = () => async (dispatch) => {
     }
 };
 
-
 const transferBalance = (id) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token');
@@ -75,8 +77,6 @@ const transferBalance = (id) => async (dispatch) => {
         const result = await response.json()
 
         dispatch(fetchAllTransaction())
-
-
     } catch (error) {
         console.log(error);
     }
