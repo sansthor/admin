@@ -101,6 +101,7 @@ export default function TableTransaction(props) {
     }, [dispatch]);
     
     return (
+        
         <Paper className={classes.root}>
             {transactionData !== null && (
                 <Box
@@ -113,7 +114,7 @@ export default function TableTransaction(props) {
                     }}
                 ></Box>
             )}
-            
+            <h3>Filter</h3><Button variant='contained' color='primary' onClick={handleDone}>All Status Done</Button>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -159,7 +160,8 @@ export default function TableTransaction(props) {
                                                
                                             </TableCell>
                                             <TableCell>
-                                            <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>
+                                            {user.total === 0 ? <Button disabled variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>:
+                                            <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>}
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -177,7 +179,7 @@ export default function TableTransaction(props) {
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
-            <Button variant='contained' color='primary' onClick={handleDone}>All Status Done</Button>
+           
         </Paper>
         
     );
