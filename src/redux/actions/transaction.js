@@ -1,5 +1,3 @@
-import { fetchAllService } from "./service";
-
 const GET_ALL_TRANSACTION = "GET_ALL_Transaction";
 const TRANSFER_BALANCE = 'TRANSFER BALANCE'
 const GET_ALL_DONE = 'GET_ALL_DONE'
@@ -74,7 +72,7 @@ const transferBalance = (id) => async (dispatch) => {
         };
 
         const response = await fetch(url, options)
-        const result = await response.json()
+        await response.json()
 
         dispatch(fetchAllTransaction())
     } catch (error) {
