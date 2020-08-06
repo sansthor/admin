@@ -10,6 +10,10 @@ import adminData from './admin';
 import addAdmin from './addAdmin';
 import editAdmin from './editAdmin';
 import deleteAdmin from './deleteAdmin'
+import searchDataAdmin from './searchDataAdmin'
+import searchDataUser from './searchDataUser'
+import searchDataTransaction from './searchDataTransaction'
+import searchDataService from './searchDataService'
 
 export default combineReducers({
     LoginAdmin,
@@ -19,5 +23,9 @@ export default combineReducers({
     adminData,
     addAdmin,
     editAdmin,
-    deleteAdmin
+    deleteAdmin,
+    searchDataAdmin,
+    searchDataUser,
+    searchDataTransaction,
+    searchDataService
 });

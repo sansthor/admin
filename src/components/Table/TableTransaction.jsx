@@ -9,15 +9,24 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
-    Box,Button
+    Box,
+    Button,
+    Avatar,
+    TextField,
 } from "@material-ui/core";
+import { Pageview } from "@material-ui/icons";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllTransaction, transferBalance, fetchAllDone } from "../../redux/actions";
+import {
+    fetchAllTransaction,
+    transferBalance,
+    fetchAllDone,
+    fetchFilterTransaction,
+} from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.info.dark,
+        backgroundColor: "#002858",
         color: theme.palette.common.white,
     },
     body: {
@@ -36,10 +45,15 @@ const useStyles = makeStyles({
 
 export default function TableTransaction(props) {
     const dispatch = useDispatch();
+
     const transactionData = useSelector((state) => state.transactionData);
+    useSelector((state) => state.searchDataTransaction);
+
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [input, setinput] = useState("");
+
     console.log(transactionData);
     const columns = [
         { id: "createdAt", label: "Created At", minWidth: 120 },
@@ -71,21 +85,24 @@ export default function TableTransaction(props) {
             align: "right",
         },
         {
-            align:'right'
-        }
+            align: "right",
+        },
     ];
-    
-    
 
-    const handleClick = (id) =>{
-       
-        dispatch(transferBalance(id))
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        event.target.reset();
+        dispatch(fetchFilterTransaction(input));
+    };
+
+    const handleClick = (id) => {
+        dispatch(transferBalance(id));
         dispatch(fetchAllTransaction());
-    } 
+    };
 
     const handleDone = () => {
-        dispatch(fetchAllDone())
-    }
+        dispatch(fetchAllDone());
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -96,12 +113,24 @@ export default function TableTransaction(props) {
         setPage(0);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            let key = event.target.value;
+
+            setinput(key);
+            key = key.charAt(0).toUpperCase() + key.substr(1).toLowerCase();
+        }
+    };
+
     useEffect(() => {
-        dispatch(fetchAllTransaction());
-    }, [dispatch]);
-    
+        if (input !== "") {
+            dispatch(fetchFilterTransaction());
+        } else {
+            dispatch(fetchAllTransaction());
+        }
+    }, [dispatch, input]);
+
     return (
-        
         <Paper className={classes.root}>
             {transactionData !== null && (
                 <Box
@@ -112,9 +141,27 @@ export default function TableTransaction(props) {
                         flexDirection: "row",
                         justifyContent: "center",
                     }}
-                ></Box>
+                >
+                    <Box component="div" style={{ marginTop: "20px" }}>
+                        <Avatar style={{ background: "#7fdbda" }}>
+                            <Pageview />
+                        </Avatar>
+                    </Box>
+                    <Box component="div" style={{ margin: "1em" }}>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                label="Search Status"
+                                variant="outlined"
+                                onKeyPress={handleKeyPress}
+                            />
+                        </form>
+                    </Box>
+                </Box>
             )}
-            <h3>Filter</h3><Button variant='contained' color='primary' onClick={handleDone}>All Status Done</Button>
+            <h3>Filter</h3>
+            <Button variant="contained" color="primary" onClick={handleDone}>
+                All Status Done
+            </Button>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -157,11 +204,34 @@ export default function TableTransaction(props) {
                                             <TableCell>{user.total}</TableCell>
                                             <TableCell>
                                                 {user.quantity}
-                                               
                                             </TableCell>
                                             <TableCell>
-                                            {user.total === 0 ? <Button disabled variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>:
-                                            <Button variant='contained' color='primary' onClick={() => handleClick(user._id)}>Transfer</Button>}
+                                                {user.total === 0 ? (
+                                                    <Button
+                                                        disabled
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() =>
+                                                            handleClick(
+                                                                user._id
+                                                            )
+                                                        }
+                                                    >
+                                                        Transfer
+                                                    </Button>
+                                                ) : (
+                                                    <Button
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={() =>
+                                                            handleClick(
+                                                                user._id
+                                                            )
+                                                        }
+                                                    >
+                                                        Transfer
+                                                    </Button>
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -169,7 +239,7 @@ export default function TableTransaction(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-           
+
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
@@ -179,8 +249,6 @@ export default function TableTransaction(props) {
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
             />
-           
         </Paper>
-        
     );
 }

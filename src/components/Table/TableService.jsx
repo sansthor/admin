@@ -9,15 +9,20 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
-    Box,Button
+    Box,
+    Button,
+    Avatar,
+    TextField,
 } from "@material-ui/core";
+import { Pageview } from "@material-ui/icons";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllService,deleteService } from "../../redux/actions";
+import { fetchAllService, deleteService } from "../../redux/actions";
+import { fetchFilterService } from "../../redux/actions";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.info.dark,
+        backgroundColor: "#002858",
         color: theme.palette.common.white,
     },
     body: {
@@ -36,10 +41,14 @@ const useStyles = makeStyles({
 
 export default function TableUser(props) {
     const dispatch = useDispatch();
+
     const service = useSelector((state) => state.service);
+    useSelector((state) => state.searchDataService);
+
     const classes = useStyles();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [input, setinput] = useState("");
 
     const columns = [
         { id: "createdAt", label: "Created At", minWidth: 170 },
@@ -59,16 +68,20 @@ export default function TableUser(props) {
             align: "right",
         },
         {
-            align:'right'
-        }
+            align: "right",
+        },
     ];
 
-    const handleDelete = (id) =>{
-       
-        dispatch(deleteService(id))
-        dispatch(fetchAllService());
-    } 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        event.target.reset();
+        dispatch(fetchFilterService(input));
+    };
 
+    const handleDelete = (id) => {
+        dispatch(deleteService(id));
+        dispatch(fetchAllService());
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -79,9 +92,22 @@ export default function TableUser(props) {
         setPage(0);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            let key = event.target.value;
+
+            setinput(key);
+            key = key.charAt(0).toUpperCase() + key.substr(1).toLowerCase();
+        }
+    };
+
     useEffect(() => {
-        dispatch(fetchAllService());
-    }, [dispatch]);
+        if (input !== "") {
+            dispatch(fetchFilterService());
+        } else {
+            dispatch(fetchAllService());
+        }
+    }, [dispatch, input]);
 
     return (
         <Paper className={classes.root}>
@@ -94,7 +120,22 @@ export default function TableUser(props) {
                         flexDirection: "row",
                         justifyContent: "center",
                     }}
-                ></Box>
+                >
+                    <Box component="div" style={{ marginTop: "20px" }}>
+                        <Avatar style={{ background: "#7fdbda" }}>
+                            <Pageview />
+                        </Avatar>
+                    </Box>
+                    <Box component="div" style={{ margin: "1em" }}>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                label="Search Title"
+                                variant="outlined"
+                                onKeyPress={handleKeyPress}
+                            />
+                        </form>
+                    </Box>
+                </Box>
             )}
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
@@ -131,11 +172,19 @@ export default function TableUser(props) {
                                             <TableCell>{user.title}</TableCell>
                                             <TableCell>{user.price}</TableCell>
                                             <TableCell>
-                                                {user.userID !== undefined && user.userID.fullname}
-
+                                                {user.userID !== undefined &&
+                                                    user.userID.fullname}
                                             </TableCell>
                                             <TableCell>
-                                            <Button onClick={() => handleDelete(user._id)} color='primary' variant='contained'>Delete</Button>
+                                                <Button
+                                                    onClick={() =>
+                                                        handleDelete(user._id)
+                                                    }
+                                                    color="primary"
+                                                    variant="contained"
+                                                >
+                                                    Delete
+                                                </Button>
                                             </TableCell>
                                         </TableRow>
                                     );

@@ -72,7 +72,9 @@ function Sidebar(props) {
 
     const drawer = (
         <div>
-            <div className={classes.toolbar} />
+            <Typography variant="h4" style={{ padding: "15px" }}>
+                Sansthor Admin Pages
+            </Typography>
             <Divider />
             {props.tabAdmin}
             <Divider />
@@ -103,7 +105,7 @@ function Sidebar(props) {
             <AppBar
                 position="fixed"
                 className={classes.appBar}
-                style={{ background: "#004aad" }}
+                style={{ background: "#002858" }}
             >
                 <Toolbar>
                     <IconButton
