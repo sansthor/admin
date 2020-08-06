@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import { Pageview } from "@material-ui/icons";
 
+import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllService, deleteService } from "../../redux/actions";
 import { fetchFilterService } from "../../redux/actions";
@@ -166,7 +167,9 @@ export default function TableUser(props) {
                                             tabIndex={-1}
                                         >
                                             <TableCell>
-                                                {user.createdAt}
+                                                {moment(user.createdAt).format(
+                                                    "MMMM Do YYYY, h:mm:ss a"
+                                                )}
                                             </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.title}</TableCell>
