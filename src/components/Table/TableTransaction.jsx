@@ -206,7 +206,7 @@ export default function TableTransaction(props) {
                                                 {user.quantity}
                                             </TableCell>
                                             <TableCell>
-                                                {user.total === 0 ? (
+                                                {user.total === 0 && user.userStatus === 'DONE' && user.talentSTatus === 'DONE' ? (
                                                     <Button
                                                         disabled
                                                         variant="contained"

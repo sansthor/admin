@@ -74,7 +74,6 @@ const transferBalance = (id) => async (dispatch) => {
         const response = await fetch(url, options)
         await response.json()
 
-        dispatch(fetchAllTransaction())
     } catch (error) {
         console.log(error);
     }
