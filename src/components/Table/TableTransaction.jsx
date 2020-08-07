@@ -57,7 +57,8 @@ export default function TableTransaction(props) {
     console.log(transactionData);
     const columns = [
         { id: "createdAt", label: "Created At", minWidth: 120 },
-        { id: "id", label: "ID", minWidth: 120 },
+        { id: "TalentUsername", label: "Talent Username", minWidth: 120 },
+        { id: "UserUsername", label: "User Username", minWidth: 120 },
         { id: "status", label: "Status", minWidth: 100 },
 
         {
@@ -84,9 +85,7 @@ export default function TableTransaction(props) {
             minWidth: 100,
             align: "right",
         },
-        {
-            align: "right",
-        },
+        
     ];
 
     const handleSubmit = (event) => {
@@ -184,6 +183,7 @@ export default function TableTransaction(props) {
                                     page * rowsPerPage + rowsPerPage
                                 )
                                 .map((user, index) => {
+                                    console.log(user)
                                     return (
                                         <TableRow
                                             hover
@@ -193,7 +193,8 @@ export default function TableTransaction(props) {
                                             <TableCell>
                                                 {moment(user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                                             </TableCell>
-                                            <TableCell>{user._id}</TableCell>
+                                            <TableCell>{user.talentID.username}</TableCell>
+                                            <TableCell>{user.userID !== undefined && user.userID.username}</TableCell>
                                             <TableCell>{user.status}</TableCell>
                                             <TableCell>
                                                 {user.talentStatus}
