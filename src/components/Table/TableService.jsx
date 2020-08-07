@@ -17,6 +17,7 @@ import {
 import { Pageview } from "@material-ui/icons";
 
 import moment from "moment";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllService, deleteService } from "../../redux/actions";
 import { fetchFilterService } from "../../redux/actions";
@@ -69,6 +70,8 @@ export default function TableUser(props) {
             align: "right",
         },
         {
+            id: "option",
+            label: "Option",
             align: "right",
         },
     ];
@@ -186,6 +189,7 @@ export default function TableUser(props) {
                                                     color="primary"
                                                     variant="contained"
                                                 >
+                                                    <DeleteOutlineIcon />
                                                     Delete
                                                 </Button>
                                             </TableCell>

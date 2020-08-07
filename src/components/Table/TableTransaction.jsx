@@ -14,8 +14,9 @@ import {
     Avatar,
     TextField,
 } from "@material-ui/core";
+import SyncAltIcon from "@material-ui/icons/SyncAlt";
 import { Pageview } from "@material-ui/icons";
-import moment from 'moment';
+import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import {
     fetchAllTransaction,
@@ -54,10 +55,10 @@ export default function TableTransaction(props) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [input, setinput] = useState("");
 
-    console.log(transactionData);
+    console.log(transactionData.userID);
     const columns = [
         { id: "createdAt", label: "Created At", minWidth: 120 },
-        { id: "id", label: "ID", minWidth: 120 },
+        { id: "username", label: "User Name", minWidth: 120 },
         { id: "status", label: "Status", minWidth: 100 },
 
         {
@@ -85,6 +86,8 @@ export default function TableTransaction(props) {
             align: "right",
         },
         {
+            id: "option",
+            label: "Option",
             align: "right",
         },
     ];
@@ -191,7 +194,9 @@ export default function TableTransaction(props) {
                                             tabIndex={-1}
                                         >
                                             <TableCell>
-                                                {moment(user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                                                {moment(user.createdAt).format(
+                                                    "MMMM Do YYYY, h:mm:ss a"
+                                                )}
                                             </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.status}</TableCell>
@@ -206,7 +211,9 @@ export default function TableTransaction(props) {
                                                 {user.quantity}
                                             </TableCell>
                                             <TableCell>
-                                                {user.total === 0 && user.userStatus === 'DONE' && user.talentSTatus === 'DONE' ? (
+                                                {user.total === 0 &&
+                                                user.userStatus === "DONE" &&
+                                                user.talentSTatus === "DONE" ? (
                                                     <Button
                                                         disabled
                                                         variant="contained"
@@ -229,6 +236,7 @@ export default function TableTransaction(props) {
                                                             )
                                                         }
                                                     >
+                                                        <SyncAltIcon />
                                                         Transfer
                                                     </Button>
                                                 )}

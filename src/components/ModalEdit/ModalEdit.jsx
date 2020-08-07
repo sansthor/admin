@@ -59,9 +59,10 @@ export default function ModalEditData(props) {
                 variant="contained"
                 color="primary"
                 onClick={handleClickOpen}
+                size="medium"
             >
                 <EditIcon />
-                Edit Data
+                Edit
             </Button>
             <Dialog
                 open={open}
