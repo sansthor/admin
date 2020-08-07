@@ -14,6 +14,7 @@ import {
     TextField,
 } from "@material-ui/core";
 
+import moment from "moment";
 import { Pageview } from "@material-ui/icons";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -151,7 +152,9 @@ export default function TableAdmin(props) {
                                             tabIndex={-1}
                                         >
                                             <TableCell>
-                                                {user.createdAt}
+                                                {moment(user.createdAt).format(
+                                                    "MMMM Do YYYY, h:mm:ss a"
+                                                )}
                                             </TableCell>
                                             <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.email}</TableCell>

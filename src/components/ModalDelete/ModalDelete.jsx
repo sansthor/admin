@@ -45,9 +45,10 @@ export default function ModalDeleteData(props) {
                 variant="contained"
                 color="primary"
                 onClick={handleClickOpen}
+                size="medium"
             >
                 <DeleteOutlineIcon />
-                Delete Data
+                Delete
             </Button>
             <Dialog
                 open={open}
