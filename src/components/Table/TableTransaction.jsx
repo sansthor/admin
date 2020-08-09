@@ -230,7 +230,7 @@ export default function TableTransaction(props) {
                                                     user.userID.username}
                                             </TableCell>
                                             <TableCell>{user.status}</TableCell>
-                                            <TableCell>
+                                            <TableCell style={{width:'170px'}}>
                                                 {user.talentStatus}
                                             </TableCell>
                                             <TableCell>
@@ -242,8 +242,7 @@ export default function TableTransaction(props) {
                                             </TableCell>
                                             <TableCell>
                                                 {user.total === 0 &&
-                                                user.userStatus === "DONE" &&
-                                                user.talentSTatus === "DONE" ? (
+                                                user.userStatus && user.talentStatus === 'DONE' ? (
                                                     <Button
                                                         disabled
                                                         variant="contained"
