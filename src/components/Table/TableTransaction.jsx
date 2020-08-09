@@ -200,10 +200,10 @@ export default function TableTransaction(props) {
                                                     "MMMM Do YYYY, h:mm:ss a"
                                                 )}
                                             </TableCell>
-                                            <TableCell>{user.talentID.username}</TableCell>
+                                            <TableCell>{user._id}</TableCell>
                                             <TableCell>{user.userID !== undefined && user.userID.username}</TableCell>
                                             <TableCell>{user.status}</TableCell>
-                                            <TableCell>
+                                            <TableCell style={{width:'170px'}}>
                                                 {user.talentStatus}
                                             </TableCell>
                                             <TableCell>
@@ -215,8 +215,7 @@ export default function TableTransaction(props) {
                                             </TableCell>
                                             <TableCell>
                                                 {user.total === 0 &&
-                                                user.userStatus === "DONE" &&
-                                                user.talentSTatus === "DONE" ? (
+                                                user.userStatus && user.talentStatus === 'DONE' ? (
                                                     <Button
                                                         disabled
                                                         variant="contained"
