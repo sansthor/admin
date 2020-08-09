@@ -14,6 +14,8 @@ import {
     Avatar,
     TextField,
 } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import DoneIcon from "@material-ui/icons/Done";
 import SyncAltIcon from "@material-ui/icons/SyncAlt";
 import { Pageview } from "@material-ui/icons";
 import moment from "moment";
@@ -35,14 +37,19 @@ const StyledTableCell = withStyles((theme) => ({
     },
 }))(TableCell);
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
     },
     container: {
         maxHeight: 440,
     },
-});
+    grid: {
+        flexGrow: 1,
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+}));
 
 export default function TableTransaction(props) {
     const dispatch = useDispatch();
@@ -162,10 +169,25 @@ export default function TableTransaction(props) {
                     </Box>
                 </Box>
             )}
-            <h3>Filter</h3>
-            <Button variant="contained" color="primary" onClick={handleDone}>
-                All Status Done
-            </Button>
+            <div className={classes.grid}>
+                <Grid container spacing={1}>
+                    <h3 container item xs={12}>
+                        Filter Status
+                    </h3>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleDone}
+                        container
+                        item
+                        xs={12}
+                        style={{ marginLeft: "15px", marginBottom: "10px" }}
+                    >
+                        <DoneIcon />
+                        All Status Done
+                    </Button>
+                </Grid>
+            </div>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -188,7 +210,7 @@ export default function TableTransaction(props) {
                                     page * rowsPerPage + rowsPerPage
                                 )
                                 .map((user, index) => {
-                                    console.log(user)
+                                    console.log(user);
                                     return (
                                         <TableRow
                                             hover
@@ -200,8 +222,13 @@ export default function TableTransaction(props) {
                                                     "MMMM Do YYYY, h:mm:ss a"
                                                 )}
                                             </TableCell>
-                                            <TableCell>{user._id}</TableCell>
-                                            <TableCell>{user.userID !== undefined && user.userID.username}</TableCell>
+                                            <TableCell>
+                                                {user.talentID.username}
+                                            </TableCell>
+                                            <TableCell>
+                                                {user.userID !== undefined &&
+                                                    user.userID.username}
+                                            </TableCell>
                                             <TableCell>{user.status}</TableCell>
                                             <TableCell style={{width:'170px'}}>
                                                 {user.talentStatus}
