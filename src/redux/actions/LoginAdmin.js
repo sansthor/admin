@@ -33,7 +33,7 @@ const loginAdmin = (formData, history) => async (dispatch) => {
 
             localStorage.setItem("token", result.result);
             dispatch(getUserLogin(result));
-            history.push("/admin/admin-dataadmin");
+            history.push("/admin/admin-dashboard");
         } else if (response.status === 403) {
             Swal.fire({
                 title: "Email or Password Incorrect!",

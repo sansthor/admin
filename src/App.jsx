@@ -31,11 +31,11 @@ function App() {
                     <Route exact path="/">
                         <LoginAdmin />
                     </Route>
-                    <PrivateRoute exact path="/admin/admin-pages">
-                        <AdminPages table={<TableUser />} />
-                    </PrivateRoute>
                     <PrivateRoute exact path="/admin/admin-dashboard">
                         <Dashboard card={<Card />} />
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/admin/admin-pages">
+                        <AdminPages table={<TableUser />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/service-pages">
                         <ServicePages
