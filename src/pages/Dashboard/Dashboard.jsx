@@ -7,12 +7,14 @@ import {
     TabTransaction,
     TabAdmin,
     TabData,
+    Card,
 } from "../../components";
 
-function DataAdmin(props) {
+function DashboardPages(props) {
     const pageTitle = props.pageTitle;
     const addButton = props.addButton;
     const table = props.table;
+    const card = <Card />;
     const tabAdmin = <TabAdmin />;
     const tabData = <TabData />;
     const tabUser = <TabUser />;
@@ -28,6 +30,7 @@ function DataAdmin(props) {
                 tabService={tabService}
                 tabTransaction={tabTransaction}
                 table={table}
+                card={card}
                 addButton={addButton}
                 pageTitle={pageTitle}
             />
@@ -35,4 +38,4 @@ function DataAdmin(props) {
     );
 }
 
-export default DataAdmin;
+export default DashboardPages;

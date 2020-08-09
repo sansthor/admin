@@ -11,6 +11,7 @@ import {
     ServicePages,
     TransactionPages,
     DataAdmin,
+    Dashboard,
 } from "./pages";
 
 import {
@@ -19,6 +20,7 @@ import {
     TableTransaction,
     TableAdmin,
     ModalAdd,
+    Card,
 } from "./components";
 
 function App() {
@@ -31,6 +33,9 @@ function App() {
                     </Route>
                     <PrivateRoute exact path="/admin/admin-pages">
                         <AdminPages table={<TableUser />} />
+                    </PrivateRoute>
+                    <PrivateRoute exact path="/admin/admin-dashboard">
+                        <Dashboard card={<Card />} />
                     </PrivateRoute>
                     <PrivateRoute exact path="/admin/service-pages">
                         <ServicePages

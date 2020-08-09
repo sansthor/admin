@@ -19,6 +19,8 @@ import { useHistory } from "react-router-dom";
 import { Menu, ExitToAppSharp } from "@material-ui/icons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import image from "../../assets/img/digitarian-icon.jpg";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -72,9 +74,11 @@ function Sidebar(props) {
 
     const drawer = (
         <div>
-            <Typography variant="h4" style={{ padding: "15px" }}>
-                Sansthor Admin Pages
-            </Typography>
+            <div style={{ width: "200px", padding: "20px" }}>
+                <img src={image} alt="icon" style={{ width: "100%" }} />
+            </div>
+            <Divider />
+            {props.tabData}
             <Divider />
             {props.tabAdmin}
             <Divider />
@@ -156,6 +160,7 @@ function Sidebar(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 {props.table}
+                {props.card}
                 <div style={{ textAlign: "center" }}>{props.addButton}</div>
             </main>
         </div>

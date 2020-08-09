@@ -6,6 +6,7 @@ import {
     TabService,
     TabTransaction,
     TabAdmin,
+    TabData,
 } from "../../components";
 
 function AdminPages(props) {
@@ -13,6 +14,7 @@ function AdminPages(props) {
     const addButton = props.addButton;
     const table = props.table;
     const tabAdmin = <TabAdmin />;
+    const tabData = <TabData />;
     const tabUser = <TabUser />;
     const tabService = <TabService />;
     const tabTransaction = <TabTransaction />;
@@ -21,6 +23,7 @@ function AdminPages(props) {
         <div>
             <Sidebar
                 tabAdmin={tabAdmin}
+                tabData={tabData}
                 tabUser={tabUser}
                 tabService={tabService}
                 tabTransaction={tabTransaction}
