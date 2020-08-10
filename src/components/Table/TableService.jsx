@@ -21,6 +21,7 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllService, deleteService } from "../../redux/actions";
 import { fetchFilterService } from "../../redux/actions";
+import ServiceEdit from "../../components/ModalEdit/ServiceEdit";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -70,8 +71,19 @@ export default function TableUser(props) {
             align: "right",
         },
         {
+            id: "category",
+            label: "Category",
+            minWidth: 170,
+            align: "right",
+        },
+        {
             id: "option",
             label: "Option",
+            align: "right",
+        },
+        {
+            id: "options",
+            label: "",
             align: "right",
         },
     ];
@@ -165,6 +177,7 @@ export default function TableUser(props) {
                                 .map((user) => {
                                     return (
                                         <TableRow
+                                            key={user._id}
                                             hover
                                             role="checkbox"
                                             tabIndex={-1}
@@ -180,6 +193,12 @@ export default function TableUser(props) {
                                             <TableCell>
                                                 {user.userID !== undefined &&
                                                     user.userID.fullname}
+                                            </TableCell>
+                                            <TableCell>
+                                                {user.category}
+                                            </TableCell>
+                                            <TableCell>
+                                                <ServiceEdit id={user._id} />
                                             </TableCell>
                                             <TableCell>
                                                 <Button

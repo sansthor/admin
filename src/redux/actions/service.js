@@ -16,15 +16,15 @@ const fetchAllService = () => async (dispatch) => {
 
         dispatch({
             type: GET_ALL_SERVICE,
-            payload: result.data
+            payload: result.data,
         });
     } catch (error) {
         console.log(error);
     }
 };
 
-const deleteService = (id) => async (dispatch) =>{
-    try{
+const deleteService = (id) => async (dispatch) => {
+    try {
         const token = localStorage.getItem("token");
         const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/admin/delete/service/${id}`;
         const options = {
@@ -35,17 +35,33 @@ const deleteService = (id) => async (dispatch) =>{
         };
 
         const response = await fetch(url, options);
-       await response.json();
+        await response.json();
 
-        dispatch(fetchAllService())
-
+        dispatch(fetchAllService());
     } catch (error) {
         console.log(error);
     }
-}
-
-export {
-    GET_ALL_SERVICE,
-    fetchAllService,
-    deleteService
 };
+const updateService = (values, id) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.REACT_APP_BACKEND_ENDPOINT}/service/edit/${id}`;
+        const options = {
+            headers: {
+                authorization: `Bearer ${token}`,
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(values),
+            method: "PUT",
+        };
+
+        const response = await fetch(url, options);
+        await response.json();
+
+        dispatch(fetchAllService());
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export { GET_ALL_SERVICE, fetchAllService, deleteService, updateService };

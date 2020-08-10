@@ -62,7 +62,6 @@ export default function TableTransaction(props) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [input, setinput] = useState("");
 
-    console.log(transactionData.userID);
     const columns = [
         { id: "createdAt", label: "Created At", minWidth: 120 },
         { id: "TalentUsername", label: "Talent Username", minWidth: 120 },
@@ -210,7 +209,6 @@ export default function TableTransaction(props) {
                                     page * rowsPerPage + rowsPerPage
                                 )
                                 .map((user, index) => {
-                                    console.log(user);
                                     return (
                                         <TableRow
                                             hover
@@ -230,7 +228,9 @@ export default function TableTransaction(props) {
                                                     user.userID.username}
                                             </TableCell>
                                             <TableCell>{user.status}</TableCell>
-                                            <TableCell style={{width:'170px'}}>
+                                            <TableCell
+                                                style={{ width: "170px" }}
+                                            >
                                                 {user.talentStatus}
                                             </TableCell>
                                             <TableCell>
@@ -242,7 +242,8 @@ export default function TableTransaction(props) {
                                             </TableCell>
                                             <TableCell>
                                                 {user.total === 0 &&
-                                                user.userStatus && user.talentStatus === 'DONE' ? (
+                                                user.userStatus &&
+                                                user.talentStatus === "DONE" ? (
                                                     <Button
                                                         disabled
                                                         variant="contained"
